@@ -1,0 +1,80 @@
+<div class="row justify-content-center mb-4">
+    <h4><strong>Gestionar Libros</strong></h4>
+    <!--form class="form-inline"-->
+        <input class="form-control mr-sm-2 mb-2" placeholder="Buscar libro por nombre" aria-label="Search" [(ngModel)]="nombre">
+        <button (click)="buscarLibro()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        
+      <!--/form-->
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form #libroForm = "ngForm" (ngSubmit)="addLibro(libroForm)" >
+                   
+                    <input type="hidden" name="_id" [(ngModel)]="libroService.selectedLibro._id">
+
+                    <div class="form-group">
+                        <input [(ngModel)]="libroService.selectedLibro.name" name="name" type="text" class="form-control" placeholder="Ingrese el nombre del libro">
+                    </div>
+
+                    <div class="form-group">
+                        <input [(ngModel)]="libroService.selectedLibro.editor" name="editor" type="text" class="form-control" placeholder="Ingrese la editorial del libro">
+                    </div>
+
+                    <div class="form-group">
+                        <input [(ngModel)]="libroService.selectedLibro.author" name="author" type="text" class="form-control" placeholder="Ingrese el nombre del autor">
+                    </div>
+
+                    <div class="form-group">
+                        <input [(ngModel)]="libroService.selectedLibro.year" name="year" type="number" class="form-control" placeholder="Ingrese el año de publicación">
+                    </div>
+                    <button class="btn btn-primary mr-2" (click)="resetForm(libroForm)">
+                        Limpiar
+                    </button>
+
+                    <button class="btn btn-secondary">
+                        Guardar
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Nombre del Libro
+                    </th>
+                    <th>
+                        Editorial
+                    </th>
+                    <th>
+                        Autor
+                    </th>
+                    <th>
+                        Operaciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let libro of libroService.libros">
+                    <td>{{libro.name}}</td>
+                    <td>{{libro.editor}}</td>
+                    <td>{{libro.author}}</td>
+                    <td>
+                        <button (click)="editLibro(libro)" class="btn btn-secondary btn-sm">
+                            <i class="material-icons">edit</i>
+                        </button>
+                        <button (click)="deleteLibro(libro._id)" class="btn btn-danger btn-sm">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button (click)="getLibros()" class="btn btn-outline-success my-2 my-sm-0">Ver todos</button>
+    </div>
+</div>

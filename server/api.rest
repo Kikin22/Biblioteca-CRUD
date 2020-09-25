@@ -1,0 +1,27 @@
+###
+GET http://localhost:3000/api/libros
+###
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+    "name":"Ecuador",
+    "editor":"Apocalipis",
+    "author": "Yo",
+    "year":2020
+
+}
+
+###
+GET http://localhost:3000/api/libros/5f6bda9174e19f4220a3113a
+
+###
+DELETE http://localhost:3000/api/libros/5f6bd38e74e19f4220a31138
+
+###
+PUT http://localhost:3000/api/libros/5f6bd38e74e19f4220a31138
+Content-Type: application/json
+
+{
+    "editor":"El kike"
+}
